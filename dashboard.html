@@ -262,6 +262,15 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="./data.js"></script>
     <script defer>
+      function removeDuplicates(array, key) {
+        let lookup = new Set();
+        return array.filter(
+          (obj) =>
+            !lookup.has(obj.submitted_at[key]) &&
+            lookup.add(obj.submitted_at[key])
+        );
+      }
+      data = removeDuplicates(data, "date");
       $(document).ready(function () {
         // let results = JSON.parse(
         // window.localStorage.getItem("submissions")
